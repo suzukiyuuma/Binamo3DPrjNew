@@ -20,7 +20,7 @@
         </div>
         <div>
             <example-component />
-        </div>
+        </div>  
     </div>
 </div>
 @endsection

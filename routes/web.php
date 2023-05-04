@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    // vue-router表示テスト用
+    return view('test');
 });
 
 Auth::routes();
