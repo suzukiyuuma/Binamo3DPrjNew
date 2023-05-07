@@ -1,19 +1,18 @@
 import Router from 'vue-router'
-import Home from './components/Home.vue'
-import Test from './components/Test.vue'
+import BaseTextBox from './components/BaseTextBox.vue'
+import BaseLabel from './components/BaseLabel.vue'
+import BaseButton from './components/BaseButton.vue'
+import BaseTextLabel from './components/BaseTextLabel.vue'
+import Login from './components/Login.vue'
 
 export default new Router({
   mode: 'history',
   routes: [
+    // ログイン画面
     {
-      path: '/home',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: Test
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
   ]
 });
