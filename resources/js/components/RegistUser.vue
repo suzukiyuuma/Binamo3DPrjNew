@@ -8,11 +8,20 @@
 
             <BaseTextLabel :InitialLabelMessage="'メールアドレス'" id="LoginMail"/>
             <BaseTextLabel :InitialLabelMessage="'パスワード'" id="LoginPass"/>
+            <BaseTextLabel :InitialLabelMessage="'再パスワード入力'" id="LoginPass"/>
 
-            <BaseButton @click="hello()" :InitialMessage="'ログイン'" id="LoginBtn"/>
             <BaseButton :InitialMessage="'Googleアカウントでログイン'" id="LoginSnsBtn"/>
+            <div id="RegisterUserKiyakuContent">
+                <div id="RegisterUserKiyakuLbl">
+                    <label>利用規約</label>
+                </div>
+                <BaseTextBox class="Base_TextBox_Input"></BaseTextBox>
+                <intput type="checkbox"/>
+                <label>利用規約に同意します。</label>
+                <BaseButton :InitialMessage="'会員登録'" id="RegistAccountBtn"/>
+            </div>
         </div>
-    </div>
+    </div>  
 </template>
 <script>
 // BaseTextLabelの読み込み
@@ -31,29 +40,32 @@ export default {
         goToLoginUser: function(){
             this.$router.push('./Login');
         },
-        hello: function(){
-            axios.get("/api/hello")
-            .then(response => {
-                const res = response.data;
-                alert(res);
-            })
-            .catch(error => console.log(error));
-        },
-        
     }
-    
 };
-
-
 </script>
 <style scoped>
+.Base_TextBox_Input{
+    height:200px;
+}
+#RegisterUserKiyakuContent{
+    width:50%;
+}
+#RegisterUserKiyakuLbl{
+    text-align: center;
+}
+#RegiserUserRiyouKiyaku{
+    width: 100%;
+}
 #GetLoginBtn{
     width:200px;
 }
 #InsertLoginBtn{
-    margin-left: 10px;
     width:200px;
 }
+#RegistAccountBtn{
+    width:200px;
+    margin:0 auto;
+} 
 #LoginMail{
     margin-top: 50px;
  

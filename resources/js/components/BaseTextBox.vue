@@ -1,7 +1,6 @@
 <template>
-    <div class="Base_TextBox">
-      <input class="Base_TextBox_Input" type="text" v-model="message" :placeholder="placeMessage"  />
-    </div>
+    <textarea class="Base_TextBox_Input" type="text" v-model="message" :placeholder="placeMessage">
+    </textarea>
 </template>
   
 <script>

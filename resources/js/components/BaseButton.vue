@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button :class="computedClasses">
+        <button @click="handleClick" :class="computedClasses">
             {{ InitialMessage  }}
         </button>
     </div>
@@ -36,6 +36,11 @@ export default {
         
         },
     },
+    methods: {
+    handleClick() {
+      this.$emit("click");
+    }
+  }
 };
 </script>
 
