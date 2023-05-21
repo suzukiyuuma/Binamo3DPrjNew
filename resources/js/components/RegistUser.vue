@@ -18,7 +18,7 @@
                 <BaseTextBox class="Base_TextBox_Input"></BaseTextBox>
                 <intput type="checkbox"/>
                 <label>利用規約に同意します。</label>
-                <BaseButton :InitialMessage="'会員登録'" id="RegistAccountBtn"/>
+                <BaseButton @click="registBainamoUser()" :InitialMessage="'会員登録'" id="RegistAccountBtn"/>
             </div>
         </div>
     </div>  
@@ -40,6 +40,13 @@ export default {
         goToLoginUser: function(){
             this.$router.push('./Login');
         },
+        registBainamoUser: function(){
+            axios.get("/api/registBainamoUser")
+            .then(response => {
+                const res = response.data;
+            })
+            .catch(error => console.log(error));
+        }
     }
 };
 </script>
