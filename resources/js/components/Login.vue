@@ -35,6 +35,7 @@ export default {
             axios.get("/api/hello")
             .then(response => {
                 const res = response.data;
+                console.log(res);
                 alert(res);
             })
             .catch(error => console.log(error));

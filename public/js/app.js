@@ -5471,6 +5471,7 @@ __webpack_require__.r(__webpack_exports__);
     hello: function hello() {
       axios.get("/api/hello").then(function (response) {
         var res = response.data;
+        console.log(res);
         alert(res);
       })["catch"](function (error) {
         return console.log(error);
