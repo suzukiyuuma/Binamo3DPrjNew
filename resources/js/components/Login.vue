@@ -6,10 +6,10 @@
                 <BaseButton @click="goToRegistUser()" :InitialMessage="'会員登録'" id="InsertLoginBtn"/>
             </div>
 
-            <BaseTextLabel :InitialLabelMessage="'メールアドレス'" id="LoginMail"/>
-            <BaseTextLabel :InitialLabelMessage="'パスワード'" id="LoginPass"/>
+            <BaseTextLabel :InitLblText="'メールアドレス'" :value="email" @input="email = $event" id="LoginMail"/>
+            <BaseTextLabel :InitLblText="'パスワード'" :value="password" @input="password = $event" id="LoginPass"/>
 
-            <BaseButton @click="hello()" :InitialMessage="'ログイン'" id="LoginBtn"/>
+            <BaseButton @click="Login()" :InitialMessage="'ログイン'" id="LoginBtn"/>
             <BaseButton :InitialMessage="'Googleアカウントでログイン'" id="LoginSnsBtn"/>
         </div>
     </div>
@@ -24,6 +24,23 @@ export default {
         BaseTextLabel,
         BaseButton,
     },
+    data() {
+        return {
+            email: '',
+            password: '',
+        }
+    },
+    // validations: {
+    //     email: {
+    //         required,
+    //         email,
+    //     },
+    //     password: {
+    //         required,
+    //         minLength: minLength(8),
+    //         maxLength: maxLength(16),
+    //     },
+    // },
     methods: {
         goToRegistUser: function(){
             this.$router.push('./RegistUser');
@@ -31,8 +48,25 @@ export default {
         goToLoginUser: function(){
             this.$router.push('./Login');
         },
-        hello: function(){
-            axios.get("/api/hello")
+        Login: function(){
+            // バリデーションチェック
+            // if(this.$v.$invalid){
+            //     alert("入力内容に不備があります。");
+            //     return;
+            // }
+
+            // alert(this.email);
+            // alert(this.password);
+            // const params = {
+            //     email: this.email,
+            //     password: this.password,
+            // }
+            axios.get("/api/getBainamoUser", {
+                params: {
+                    email: this.email,
+                    password: this.password,
+                }
+            })
             .then(response => {
                 const res = response.data;
                 console.log(res);

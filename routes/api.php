@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/hello', [HelloController::class, 'index']);
 Route::post('/registBainamoUser', [BainamoUsersController::class, 'create']);
+Route::get('/getBainamoUser', [BainamoUsersController::class, 'get']);

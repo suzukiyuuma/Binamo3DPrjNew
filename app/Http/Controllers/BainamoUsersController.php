@@ -11,6 +11,21 @@ class BainamoUsersController extends Controller
         $users = BainamoUser::get(['id', 'name', 'email']);
         return response()->json($users);
     }
+    
+    public function get(Request $request)
+    {
+        if($request->email == null){
+            return response()->json(['message' => "ユーザ名を設定してください。"], 500);
+        }
+        if($request->password == null){
+            return response()->json(['message' => "パスワードを設定してください。"], 500);
+        }
+        $email = $request->email;
+        $password = $request->password;
+        
+        $users = BainamoUser::where('email', $email)->where('password', $password)->first();
+        return response()->json($users);
+    }
 
     public function create(Request $request)
     {

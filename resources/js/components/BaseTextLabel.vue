@@ -1,7 +1,7 @@
 <template>
     <div class="Base_Text_Parent">
-        <label class="Base_Text_Label_Label">{{ InitialLabelMessage }}</label>
-        <input class="Base_Text_Label_TextBox" type="text" v-model="TextMessage" />
+      <label class="Base_Text_Label_Label">{{ InitLblText }}</label>
+      <input class="Base_Text_Label_TextBox" type="text" :value="TextMessage" @input="$emit('input', $event.target.value)">
         <!-- <div class="Base_Text_Label">
         </div>
         <div class="Base_Text_TextBox">
@@ -12,11 +12,17 @@
 <script>
 export default {
     props: {
-    InitialLabelMessage: {
+      InitLblText: {
         type: String,
         default: '',
+      },
+      TextMessage: {
+        type: String,
+        default: '',
+      },
+      
     },
-    }
+    
 };
 </script>
 

@@ -5411,7 +5411,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    InitialLabelMessage: {
+    InitLblText: {
+      type: String,
+      "default": ''
+    },
+    TextMessage: {
       type: String,
       "default": ''
     }
@@ -5461,6 +5465,23 @@ __webpack_require__.r(__webpack_exports__);
     BaseTextLabel: _BaseTextLabel_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     BaseButton: _BaseButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  data: function data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  // validations: {
+  //     email: {
+  //         required,
+  //         email,
+  //     },
+  //     password: {
+  //         required,
+  //         minLength: minLength(8),
+  //         maxLength: maxLength(16),
+  //     },
+  // },
   methods: {
     goToRegistUser: function goToRegistUser() {
       this.$router.push('./RegistUser');
@@ -5468,8 +5489,25 @@ __webpack_require__.r(__webpack_exports__);
     goToLoginUser: function goToLoginUser() {
       this.$router.push('./Login');
     },
-    hello: function hello() {
-      axios.get("/api/hello").then(function (response) {
+    Login: function Login() {
+      // バリデーションチェック
+      // if(this.$v.$invalid){
+      //     alert("入力内容に不備があります。");
+      //     return;
+      // }
+
+      // alert(this.email);
+      // alert(this.password);
+      // const params = {
+      //     email: this.email,
+      //     password: this.password,
+      // }
+      axios.get("/api/getBainamoUser", {
+        params: {
+          email: this.email,
+          password: this.password
+        }
+      }).then(function (response) {
         var res = response.data;
         console.log(res);
         alert(res);
@@ -5645,13 +5683,7 @@ var render = function render() {
     staticClass: "Base_Text_Parent"
   }, [_c("label", {
     staticClass: "Base_Text_Label_Label"
-  }, [_vm._v(_vm._s(_vm.InitialLabelMessage))]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.TextMessage,
-      expression: "TextMessage"
-    }],
+  }, [_vm._v(_vm._s(_vm.InitLblText))]), _vm._v(" "), _c("input", {
     staticClass: "Base_Text_Label_TextBox",
     attrs: {
       type: "text"
@@ -5661,8 +5693,7 @@ var render = function render() {
     },
     on: {
       input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.TextMessage = $event.target.value;
+        return _vm.$emit("input", $event.target.value);
       }
     }
   })]);
@@ -5759,13 +5790,25 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("BaseTextLabel", {
     attrs: {
-      InitialLabelMessage: "メールアドレス",
+      InitLblText: "メールアドレス",
+      value: _vm.email,
       id: "LoginMail"
+    },
+    on: {
+      input: function input($event) {
+        _vm.email = $event;
+      }
     }
   }), _vm._v(" "), _c("BaseTextLabel", {
     attrs: {
-      InitialLabelMessage: "パスワード",
+      InitLblText: "パスワード",
+      value: _vm.password,
       id: "LoginPass"
+    },
+    on: {
+      input: function input($event) {
+        _vm.password = $event;
+      }
     }
   }), _vm._v(" "), _c("BaseButton", {
     attrs: {
@@ -5774,7 +5817,7 @@ var render = function render() {
     },
     on: {
       click: function click($event) {
-        return _vm.hello();
+        return _vm.Login();
       }
     }
   }), _vm._v(" "), _c("BaseButton", {
