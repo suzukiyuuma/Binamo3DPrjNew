@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BainamoUser;
+use PHPUnit\Framework\Constraint\Count;
 
 class BainamoUsersController extends Controller
 {
@@ -15,16 +16,22 @@ class BainamoUsersController extends Controller
     public function get(Request $request)
     {
         if($request->email == null){
-            return response()->json(['message' => "ユーザ名を設定してください。"], 500);
+            return response()->json(['message' => "ユーザ名を設定してください。"], 403);
         }
         if($request->password == null){
-            return response()->json(['message' => "パスワードを設定してください。"], 500);
+            return response()->json(['message' => "パスワードを設定してください。"], 403);
         }
         $email = $request->email;
         $password = $request->password;
         
-        $users = BainamoUser::where('email', $email)->where('password', $password)->first();
-        return response()->json($users);
+
+        $users = BainamoUser::where('email', $email)->where('password', $password)->get();
+        if(0 == $users->count()){
+            return response()->json(['message' => "ユーザ名またはパスワードが間違っています。"], 403);
+        }
+
+        $usersInfo = $users->first();
+        return response()->json($usersInfo);
     }
 
     public function create(Request $request)

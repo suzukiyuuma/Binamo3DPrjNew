@@ -1,15 +1,17 @@
 <template>
     <textarea class="Base_TextBox_Input" type="text" v-model="message" :placeholder="placeMessage">
+        placeMessage
     </textarea>
 </template>
   
 <script>
 export default {
     props: {
-        placeholder: {
+        placeMessage: {
             type: String,
-            default: "placeMessage",
+            default: "",
         },
+    
     },
     data() {
         return {
@@ -31,6 +33,7 @@ export default {
     padding: 10px;
     width: 100%;
     min-width: 75px;
+    height:40px;
     outline: none;
 }
 </style>

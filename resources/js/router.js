@@ -3,6 +3,7 @@ import BaseTextBox from './components/BaseTextBox.vue'
 import BaseLabel from './components/BaseLabel.vue'
 import BaseButton from './components/BaseButton.vue'
 import BaseTextLabel from './components/BaseTextLabel.vue'
+import SearchContents from './components/SearchContents.vue'
 
 // メイン画面
 import Login from './components/Login.vue'
@@ -22,6 +23,12 @@ export default new Router({
       path: '/RegistUser',
       name: 'RegistUser',
       component: RegisterUser
+    },
+    // メイン画面
+    {
+      path: '/SearchContents',
+      name: 'SearchContents',
+      component: SearchContents
     },
   ]
 });

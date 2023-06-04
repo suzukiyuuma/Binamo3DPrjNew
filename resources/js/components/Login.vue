@@ -61,18 +61,22 @@ export default {
             //     email: this.email,
             //     password: this.password,
             // }
-            axios.get("/api/getBainamoUser", {
-                params: {
-                    email: this.email,
-                    password: this.password,
-                }
-            })
-            .then(response => {
-                const res = response.data;
-                console.log(res);
-                alert(res);
-            })
-            .catch(error => console.log(error));
+            // axios.get("/api/getBainamoUser", {
+            //     params: {
+            //         email: this.email,
+            //         password: this.password,
+            //     }
+            // })
+            // .then(response => {
+            //     const res = response.data;
+            //     console.log(res);
+            //     this.$router.push('./SearchContents');
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            //     alert(error.response.data.message);
+            // })
+            this.$router.push('./SearchContents');
         },
         
     }
